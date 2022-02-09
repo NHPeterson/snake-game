@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+html {
+	background-color: black;
+	color: white;
+}
+
+span {
+	padding: 0 5px;
+}
+
+table {
+	border: 1px solid white;
+	border-collapse: collapse;
+	font-size: 15px;
+}
+
+td {
+	padding: 0;
+	text-align: center;
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+}
+
+td.snake {
+	background-color: white;
+}
+
+div#win {
+	font-size: 20px;
+	color: lime;
+}
+
+div#lose {
+	font-size: 20px;
+	color: red;
+}
