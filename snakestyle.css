@@ -5,6 +5,13 @@ html {
 	color: white;
 }
 
+span {@charset "utf-8";
+
+html {
+	background-color: black;
+	color: white;
+}
+
 span {
 	padding: 0 5px;
 }
@@ -25,6 +32,10 @@ td {
 
 td.snake {
 	background-color: white;
+}
+
+td.food {
+	background-image: radial-gradient(circle closest-side, fuchsia 100%, black);
 }
 
 div#win {
