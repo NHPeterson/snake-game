@@ -5,13 +5,6 @@ html {
 	color: white;
 }
 
-span {@charset "utf-8";
-
-html {
-	background-color: black;
-	color: white;
-}
-
 span {
 	padding: 0 5px;
 }
