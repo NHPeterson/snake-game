@@ -12,18 +12,44 @@ var tailX;
 var tailY;
 var bodyX = [];
 var bodyY = [];
+var foodX;
+var foodY;
+var foodIcon = "&#9670;";
 var gameRun;
+var gameSpeed = 200;
 
 window.onload = function() {
 	document.getElementById("play").onclick = runGame;
+	document.getElementById("up_button").onmousedown = function() {
+		if (directSnake !== "down") { directKey = "ArrowUp"; }
+	};
+	document.getElementById("left_button").onmousedown = function() {
+		if (directSnake !== "right") { directKey = "ArrowLeft"; }
+	};
+	document.getElementById("right_button").onmousedown = function() {
+		if (directSnake !== "left") { directKey = "ArrowRight"; }
+	};
+	document.getElementById("down_button").onmousedown = function() {
+		if (directSnake !== "up") { directKey = "ArrowDown"; }
+	};
 	document.onkeydown = function(e) {
-		if ((e.code === "ArrowUp" && directSnake !== "down")
+		if (    (e.code === "ArrowUp" && directSnake !== "down")
 			|| (e.code === "ArrowRight" && directSnake !== "left")
 			|| (e.code === "ArrowDown" && directSnake !== "up")
 			|| (e.code === "ArrowLeft" && directSnake !== "right")) {
 			directKey = e.code;
 		}
 	};
+	document.getElementById("food_color").oninput = foodColor;
+	document.getElementById("game_speed").oninput = function(e) {
+		gameSpeed = (5 - e.target.value) * 100;
+	};
+	if (!localStorage.getItem("snek_score")) {
+		localStorage.setItem("snek_score", "0");
+	} else {
+		highScore = Number(localStorage.getItem("snek_score"));
+		document.getElementById("highscore").innerHTML = highScore;
+	}
 	runGame();
 }
 
@@ -56,14 +82,14 @@ function runGame() {
 	bodyY = [];
 	gameTable.rows[headY].cells[headX].setAttribute("class", "snake");
 	// randomize food
-	var foodX;
-	var foodY;
 	var food = function() {
 		do {
 			foodX = Math.floor(Math.random() * gameX);
 			foodY = Math.floor(Math.random() * gameY);
 		} while (gameTable.rows[foodY].cells[foodX].className === "snake")
-		gameTable.rows[foodY].cells[foodX].innerHTML = "&#9670;";
+		//gameTable.rows[foodY].cells[foodX].innerHTML = foodIcon;
+		gameTable.rows[foodY].cells[foodX].setAttribute("class", "food");
+		foodColor();
 	};
 	food();
 	// start new interval
@@ -122,13 +148,14 @@ function runGame() {
 				document.getElementById("currentscore").innerHTML = currentScore;
 				if (currentScore > highScore) {
 					highScore += 1;
+					localStorage.setItem("snek_score", highScore);
 					document.getElementById("highscore").innerHTML = highScore;
 				}
 				if (currentScore === (gameX * gameY - 1)) {
 					endGame(1);
 					return;
 				}
-				gameTable.rows[foodY].cells[foodX].innerHTML = "";
+				//gameTable.rows[foodY].cells[foodX].innerHTML = "";
 				food();
 			} else {
 				gameTable.rows[tailY].cells[tailX].setAttribute("class", "");
@@ -136,7 +163,7 @@ function runGame() {
 				tailY = bodyY.shift();
 			}
 		}
-	}, 200);
+	}, gameSpeed);
 	var endGame = function(num) {
 		clearInterval(gameRun);
 		var endDiv = document.createElement("div");
@@ -149,4 +176,8 @@ function runGame() {
 			endDiv.innerHTML = "You lose!";
 		}
 	}
+}
+
+function foodColor() {
+	document.querySelector(".food").style.setProperty("--clr", document.getElementById("food_color").value);
 }
