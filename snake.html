@@ -12,5 +12,30 @@
 	<span>| High Score:</span>
 	<span id="highscore">0</span>
 	<div id="gameboard"></div>
+	<div id="controls">
+		<input type="button" id="up_button" class="direction" value="&uarr;" />
+		<input type="button" id="left_button" class="direction" value="&larr;" />
+		<input type="button" id="right_button" class="direction" value="&rarr;" />
+		<input type="button" id="down_button" class="direction" value="&darr;" />
+	</div>
+	<div id="options">
+	<div>
+		<label for="food_color">Food Color:</label>
+		<input type="color" id="food_color" value="#ffffff" />
+	</div>
+	<div>
+		<label for="game_speed">Game Speed:</label><br/>
+		<input type="range" id="game_speed" min="2" max="4" step=1 value=3 /><br/>
+		<label>Slow----Med----Fast</label>
+	</div>
+	</div>
+	</main>
+	<aside>
+		<ul>
+			<li>The game can be controlled with the keyboard arrow keys, or by clicking the arrows below.</li>
+			<li>The color of the snakefood can be changed with the color picker.</li>
+			<li>The game speed can be adjusted with the slider.</li>
+		</ul>
+	</aside>
 </body>
 </html>
