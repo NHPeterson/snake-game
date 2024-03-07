@@ -5,6 +5,10 @@ html {
 	color: white;
 }
 
+body {
+	padding: 10px;
+}
+
 span {
 	padding: 0 5px;
 }
@@ -28,15 +32,67 @@ td.snake {
 }
 
 td.food {
-	background-image: radial-gradient(circle closest-side, fuchsia 100%, black);
+	--clr: #ffffff;
+	background-image: radial-gradient(circle closest-side, var(--clr) 100%, black);
 }
 
-div#win {
+#win {
 	font-size: 20px;
 	color: lime;
 }
 
-div#lose {
+#lose {
 	font-size: 20px;
 	color: red;
+}
+
+main {
+	float: left;
+}
+
+aside {
+	float: right;
+	max-width: 50%;
+}
+
+aside ul {
+	list-style: square;
+}
+
+#controls {
+	height: 250px;
+	width: 250px;
+	position: relative;
+}
+
+.direction {
+	font-size: 30px;
+	background-color: white;
+	width: 75px;
+	height: 75px;
+	border-radius: 8px;
+	cursor: pointer;
+	position: absolute;
+}
+
+#up_button {
+	left: 75px;
+}
+
+#left_button {
+	top: 75px;
+}
+
+#right_button {
+	left: 150px;
+	top: 75px;
+}
+
+#down_button {
+	left: 75px;
+	top: 150px;
+}
+
+#options div {
+	padding: 5px;
 }
